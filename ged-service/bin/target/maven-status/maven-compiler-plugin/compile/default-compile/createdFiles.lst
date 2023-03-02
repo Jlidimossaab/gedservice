@@ -1,0 +1,8 @@
+com\javainuse\utils\Constants.class
+com\javainuse\controllers\ImageApi\DocumentApi.class
+com\javainuse\models\Document.class
+com\javainuse\DocumentUploadApplication.class
+com\javainuse\repositories\DocumentRepository.class
+com\javainuse\services\DocumentService.class
+com\javainuse\services\DocumentServiceImpl\DocumentServiceImpl.class
+com\javainuse\controllers\DocumentController.class

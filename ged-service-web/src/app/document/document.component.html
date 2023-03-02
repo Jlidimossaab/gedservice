@@ -1,0 +1,58 @@
+<h3>Below are the documents that you've recently uploaded</h3>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Upload</th>
+      <th>Versions</th>
+      <th>File</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let doc of documentsOnUpload;let i = index">
+      <tr>
+        <td><strong>name - </strong> {{doc.name}}</td>
+        <td><strong>category - </strong> {{documentService!.getCategory(i)}}</td>
+        <td><strong>date - </strong> {{doc.date}}</td>
+
+        <td>
+          <input type="file" id="file-upload-{{i}}" style="display:none" (change)="onFileChanged($event,i)" #fileInput>
+          <button type="button" class="btn btn-primary" (click)="fileInput.click()"><i
+              class="fa fa-upload"></i></button>
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-primary" (click)="openPopup(documentService!.getCategory(i))"><i
+              class="fa fa-eye"></i></button>
+        </td>
+        
+        <td>
+          <button type="button" class="btn btn-primary" (click)="documentService!.getDocumentVersion(retrievedDocument,docs[i]?.id!)"><i class="fa fa-eye"></i></button>
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<br>
+<div class="container row ">
+  <div class="col-md-1">
+    <input type="button" class="btn btn-primary" (click)="documentService!.onUpload(documentsOnUpload,selectedFiles!)" value="save">
+  </div>
+  <div class="col-md-1">
+    <input type="button" class="btn btn-primary " (click)="onCancel()" value="cancel">
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf="documentService!.message">{{documentService!.message}}</div>
+  </div>
+</div>

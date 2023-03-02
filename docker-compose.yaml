@@ -1,0 +1,21 @@
+services:
+  angular-app:
+    build: ./ged-service-web
+    ports:
+      - "4200:80"
+  spring-boot-app:
+    build: ./ged-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-db
+    environment:
+      DB_URL: 'jdbc:mysql://mysql-db:3306/gedservice?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false'
+      DB_USER: root
+  mysql-db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: 'gedservice'

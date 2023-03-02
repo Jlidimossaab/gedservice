@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title">Popup title</h4>
+    <button type="button" class="btn-close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    Popup content goes here
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>File</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let doc of documents!;let i = index">
+            <tr>
+                <td><strong>name - </strong> {{doc.name}}</td>
+                <td><strong>category - </strong> {{documentService!.getCategory(i)}}</td>
+                <td><strong>date - </strong> {{doc.date}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                        (click)="documentService!.getDocumentVersion(retrievedDocument,doc.id!)"><i class="fa fa-eye"></i></button>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+</div>
